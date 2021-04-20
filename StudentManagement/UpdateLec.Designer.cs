@@ -165,7 +165,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.idtxt);
             this.Name = "UpdateLec";
-            this.Text = "LecUpdate";
+            this.Text = "Update lecturer";
             this.ResumeLayout(false);
             this.PerformLayout();
 

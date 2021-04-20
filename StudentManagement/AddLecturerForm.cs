@@ -58,13 +58,16 @@ namespace StudentManagement
                 MessageBox.Show("Please enter a valid email!");
                 return;
             }
+            var result = DataProvider.Instance.findLecturerById(idtxt.Text);
+            if (result != null)
+            {
+                MessageBox.Show("Id is not available!");
+                return;
+            }
             newLec.Email = emailtxt.Text;
             newLec.DateOfBirth = DoBtxt.Value.ToString("dd-MM-yyyy");
             newLec.Department = deptxt.Text;
-            MongoClient client = new MongoClient();
-            var db = client.GetDatabase("StudentManagement");
-            var collection = db.GetCollection<Lecturer>("lecturer");
-            collection.InsertOne(newLec);
+            DataProvider.Instance.insertLecturer(newLec);
             this.Close();
         }
     }

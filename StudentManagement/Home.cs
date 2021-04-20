@@ -8,11 +8,13 @@ using System.Windows.Forms;
 
 namespace StudentManagement
 {
-    public partial class FormHome : UserControl
+    public partial class Home : UserControl
     {
-        public FormHome()
+        public Home()
         {
             InitializeComponent();
+            this.BackgroundImage = Properties.Resources.greenwich;
+            this.Dock = DockStyle.Fill;
         }
     }
 }

@@ -175,7 +175,7 @@
             this.Controls.Add(this.lecName);
             this.Controls.Add(this.lecId);
             this.Name = "AddLecturerForm";
-            this.Text = "AddLecturerForm";
+            this.Text = "Add new lecturer";
             this.ResumeLayout(false);
             this.PerformLayout();
 

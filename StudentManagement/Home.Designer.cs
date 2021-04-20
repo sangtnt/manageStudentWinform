@@ -1,6 +1,6 @@
 ﻿namespace StudentManagement
 {
-    partial class FormHome
+    partial class Home
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.SuspendLayout();
             // 
             // Home
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "Home";
-            this.Size = new System.Drawing.Size(550, 333);
             this.ResumeLayout(false);
 
         }

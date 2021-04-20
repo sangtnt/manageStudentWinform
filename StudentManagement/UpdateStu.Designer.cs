@@ -165,7 +165,7 @@
             this.Controls.Add(this.nametxt);
             this.Controls.Add(this.updateBtn);
             this.Name = "UpdateStu";
-            this.Text = "UpdateStu";
+            this.Text = "Update student";
             this.ResumeLayout(false);
             this.PerformLayout();
 

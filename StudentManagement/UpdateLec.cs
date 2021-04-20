@@ -25,17 +25,14 @@ namespace StudentManagement
         }
         private void displayLecturer(string id)
         {
-            MongoClient client = new MongoClient();
-            var db = client.GetDatabase("StudentManagement");
-            var collection = db.GetCollection<Lecturer>("lecturer");
-            var lec = collection.Find(Builders<Lecturer>.Filter.Eq("_id", id)).ToList();
-            idtxt.Text = lec[0].Id;
-            nametxt.Text = lec[0].Name;
-            emailtxt.Text = lec[0].Email;
-            addresstxt.Text = lec[0].Address;
-            deptxt.Text = lec[0].Department;
+            Lecturer lecturer = DataProvider.Instance.findLecturerById(id);
+            idtxt.Text = lecturer.Id;
+            nametxt.Text = lecturer.Name;
+            emailtxt.Text = lecturer.Email;
+            addresstxt.Text = lecturer.Address;
+            deptxt.Text = lecturer.Department;
             DateTime dt = DateTime.ParseExact(
-            lec[0].DateOfBirth, "dd-MM-yyyy",
+            lecturer.DateOfBirth, "dd-MM-yyyy",
             CultureInfo.InvariantCulture);
             dobtxt.Value = dt;
         }
@@ -67,20 +64,14 @@ namespace StudentManagement
                 MessageBox.Show("Please enter a valid email!");
                 return;
             }
-            MongoClient client = new MongoClient();
-            var db = client.GetDatabase("StudentManagement");
-            var collection = db.GetCollection<Lecturer>("lecturer");
-            var filter = Builders<Lecturer>.Filter.Eq("_id", idtxt.Text);
-            var update = Builders<Lecturer>.Update.Set("Name", nametxt.Text);
-            collection.UpdateOne(filter, update);
-            update = Builders<Lecturer>.Update.Set("Address", addresstxt.Text);
-            collection.UpdateOne(filter, update);
-            update = Builders<Lecturer>.Update.Set("Email", emailtxt.Text);
-            collection.UpdateOne(filter, update);
-            update = Builders<Lecturer>.Update.Set("Department", deptxt.Text);
-            collection.UpdateOne(filter, update);
-            update = Builders<Lecturer>.Update.Set("DateOfBirth", dobtxt.Value.ToString("dd-MM-yyyy"));
-            collection.UpdateOne(filter, update);
+            Lecturer lecturer = new Lecturer();
+            lecturer.Id = idtxt.Text;
+            lecturer.Name = nametxt.Text;
+            lecturer.DateOfBirth = dobtxt.Value.ToString("dd-MM-yyyy");
+            lecturer.Address = addresstxt.Text;
+            lecturer.Email = emailtxt.Text;
+            lecturer.Department = deptxt.Text;
+            DataProvider.Instance.updateLecturer(lecturer);
             this.Close();
         }
     }

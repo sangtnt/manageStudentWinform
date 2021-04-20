@@ -12,7 +12,6 @@ namespace StudentManagement
 {
     public partial class FormStudent : UserControl
     {
-        MongoClientSettings settings = new MongoClientSettings();
         public FormStudent()
         {
             InitializeComponent();
@@ -21,12 +20,8 @@ namespace StudentManagement
         }
         public void LoadData()
         {
-            settings.Server = new MongoServerAddress("localhost", 27017);
-            MongoClient client = new MongoClient();
-            var db = client.GetDatabase("StudentManagement");
-            var collection = db.GetCollection<Student>("student");
-            var query = collection.AsQueryable<Student>().ToList();
-            StuTable.DataSource = query;
+            var students = DataProvider.Instance.findAllStudents();
+            StuTable.DataSource = students;
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
@@ -37,10 +32,7 @@ namespace StudentManagement
         }
         private void DeleteStuById(string id)
         {
-            MongoClient client = new MongoClient();
-            var db = client.GetDatabase("StudentManagement");
-            var collection = db.GetCollection<Student>("student");
-            collection.DeleteOne(Builders<Student>.Filter.Eq("_id", id));
+            DataProvider.Instance.deleteStudentById(id);            
         }
         private void StuTable_SelectionChanged(object sender, EventArgs e)
         {
@@ -85,14 +77,8 @@ namespace StudentManagement
         }
         private void Search(string search)
         {
-            settings.Server = new MongoServerAddress("localhost", 27017);
-            MongoClient client = new MongoClient();
-            var db = client.GetDatabase("StudentManagement");
-            var collection = db.GetCollection<Student>("student");
-            var builder = Builders<Student>.Filter;
-            var filter = builder.Regex("_id", search);
-            List<Student> results = collection.Find(filter).ToList();
-            StuTable.DataSource = results;
+            List<Student> students = DataProvider.Instance.findStudentLikeId(search);
+            StuTable.DataSource = students;
         }
         private void StuUpdate_Click(object sender, EventArgs e)
         {

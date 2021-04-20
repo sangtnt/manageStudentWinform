@@ -6,6 +6,7 @@ namespace StudentManagement
 {
     class CheckValidation
     {
+        //check email validation
         public static bool checkEmail(string email)
         {
             try

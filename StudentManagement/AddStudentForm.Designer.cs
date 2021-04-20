@@ -188,6 +188,7 @@
             this.Controls.Add(this.IDCombobox);
             this.Controls.Add(this.StuId);
             this.Name = "AddStudentForm";
+            this.Text = "Add new student";
             this.ResumeLayout(false);
             this.PerformLayout();
 

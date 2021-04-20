@@ -28,10 +28,10 @@ C:\Users\sangt\source\repos\StudentManagement\StudentManagement\bin\Debug\netcor
 C:\Users\sangt\source\repos\StudentManagement\StudentManagement\bin\Debug\netcoreapp3.1\runtimes\win\native\mongocrypt.dll
 C:\Users\sangt\source\repos\StudentManagement\StudentManagement\obj\Debug\netcoreapp3.1\StudentManagement.csproj.CoreCompileInputs.cache
 C:\Users\sangt\source\repos\StudentManagement\StudentManagement\obj\Debug\netcoreapp3.1\StudentManagement.csproj.CopyComplete
-C:\Users\sangt\source\repos\StudentManagement\StudentManagement\obj\Debug\netcoreapp3.1\StudentManagement.FormHome.resources
 C:\Users\sangt\source\repos\StudentManagement\StudentManagement\obj\Debug\netcoreapp3.1\StudentManagement.FormLecturer.resources
 C:\Users\sangt\source\repos\StudentManagement\StudentManagement\obj\Debug\netcoreapp3.1\StudentManagement.FormStudent.resources
 C:\Users\sangt\source\repos\StudentManagement\StudentManagement\obj\Debug\netcoreapp3.1\StudentManagement.AddStudentForm.resources
 C:\Users\sangt\source\repos\StudentManagement\StudentManagement\obj\Debug\netcoreapp3.1\StudentManagement.AddLecturerForm.resources
 C:\Users\sangt\source\repos\StudentManagement\StudentManagement\obj\Debug\netcoreapp3.1\StudentManagement.UpdateStu.resources
 C:\Users\sangt\source\repos\StudentManagement\StudentManagement\obj\Debug\netcoreapp3.1\StudentManagement.UpdateLec.resources
+C:\Users\sangt\source\repos\StudentManagement\StudentManagement\obj\Debug\netcoreapp3.1\StudentManagement.Home.resources

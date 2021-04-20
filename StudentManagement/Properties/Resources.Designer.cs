@@ -63,9 +63,9 @@ namespace StudentManagement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap living_in_greenwich_header {
+        internal static System.Drawing.Bitmap greenwich {
             get {
-                object obj = ResourceManager.GetObject("living-in-greenwich-header", resourceCulture);
+                object obj = ResourceManager.GetObject("greenwich", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

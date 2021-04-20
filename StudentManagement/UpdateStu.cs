@@ -26,17 +26,14 @@ namespace StudentManagement
         }
         private void displayStudent(string id)
         {
-            MongoClient client = new MongoClient();
-            var db = client.GetDatabase("StudentManagement");
-            var collection = db.GetCollection<Student>("student");
-            var std = collection.Find(Builders<Student>.Filter.Eq("_id", id)).ToList();
-            idtxt.Text = std[0].Id;
-            nametxt.Text = std[0].Name;
-            emailtxt.Text = std[0].Email;
-            addresstxt.Text = std[0].Address;
-            batchtxt.Text = std[0].Batch;
+            Student std = DataProvider.Instance.findStudentById(id);
+            idtxt.Text = std.Id;
+            nametxt.Text = std.Name;
+            emailtxt.Text = std.Email;
+            addresstxt.Text = std.Address;
+            batchtxt.Text = std.Batch;
             DateTime dt = DateTime.ParseExact(
-            std[0].DateOfBirth, "dd-MM-yyyy",
+            std.DateOfBirth, "dd-MM-yyyy",
             CultureInfo.InvariantCulture);
             dobtxt.Value = dt;
         }
@@ -67,20 +64,15 @@ namespace StudentManagement
                 MessageBox.Show("Please enter a valid email!");
                 return;
             }
-            MongoClient client = new MongoClient();
-            var db = client.GetDatabase("StudentManagement");
-            var collection = db.GetCollection<Student>("student");
-            var filter = Builders<Student>.Filter.Eq("_id", idtxt.Text);
-            var update = Builders<Student>.Update.Set("Name", nametxt.Text);
-            collection.UpdateOne(filter, update);
-            update = Builders<Student>.Update.Set("Address", addresstxt.Text);
-            collection.UpdateOne(filter, update);
-            update = Builders<Student>.Update.Set("Email", emailtxt.Text);
-            collection.UpdateOne(filter, update);
-            update = Builders<Student>.Update.Set("Batch", batchtxt.Text);
-            collection.UpdateOne(filter, update);
-            update = Builders<Student>.Update.Set("DateOfBirth", dobtxt.Value.ToString("dd-MM-yyyy"));
-            collection.UpdateOne(filter, update);
+            
+            Student student = new Student();
+            student.Id = idtxt.Text;
+            student.Name = nametxt.Text;
+            student.Email = emailtxt.Text;
+            student.Address = addresstxt.Text;
+            student.Batch = batchtxt.Text;
+            student.DateOfBirth = dobtxt.Value.ToString("dd-MM-yyyy");
+            DataProvider.Instance.updateStudent(student);
             this.Close();
         }
     }

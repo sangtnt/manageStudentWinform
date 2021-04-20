@@ -12,7 +12,6 @@ namespace StudentManagement
 {
     public partial class FormLecturer : UserControl
     {
-        MongoClientSettings settings = new MongoClientSettings();
         public FormLecturer()
         {
             InitializeComponent();
@@ -28,19 +27,12 @@ namespace StudentManagement
         }
         public void LoadData()
         {
-            settings.Server = new MongoServerAddress("localhost", 27017);
-            MongoClient client = new MongoClient();
-            var db = client.GetDatabase("StudentManagement");
-            var collection = db.GetCollection<Lecturer>("lecturer");
-            var query = collection.AsQueryable<Lecturer>().ToList();
-            LecTable.DataSource = query;
+            List<Lecturer> lecturers = DataProvider.Instance.findAllLecturers();
+            LecTable.DataSource = lecturers;
         }
         private void DeleteLecById(string id)
         {
-            MongoClient client = new MongoClient();
-            var db = client.GetDatabase("StudentManagement");
-            var collection = db.GetCollection<Lecturer>("lecturer");
-            collection.DeleteOne(Builders<Lecturer>.Filter.Eq("_id", id));
+            DataProvider.Instance.deleteLecturerById(id);
         }
         private void LecTable_SelectionChanged(object sender, EventArgs e)
         {
@@ -84,14 +76,8 @@ namespace StudentManagement
         }
         private void Search(string search)
         {
-            settings.Server = new MongoServerAddress("localhost", 27017);
-            MongoClient client = new MongoClient();
-            var db = client.GetDatabase("StudentManagement");
-            var collection = db.GetCollection<Lecturer>("lecturer");
-            var builder = Builders<Lecturer>.Filter;
-            var filter = builder.Regex("_id", search);
-            List<Lecturer> results = collection.Find(filter).ToList();
-            LecTable.DataSource = results;
+            List<Lecturer> lecturers = DataProvider.Instance.findLecturerLikeId(search);
+            LecTable.DataSource = lecturers;
         }
 
         private void LecUpdate_Click(object sender, EventArgs e)

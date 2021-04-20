@@ -71,16 +71,13 @@ namespace StudentManagement
             newStu.Email = Emailtxt.Text;
             newStu.DateOfBirth = DoBtxt.Value.ToString("dd-MM-yyyy");
             newStu.Batch = Batchtxt.Text;
-            MongoClient client = new MongoClient();
-            var db = client.GetDatabase("StudentManagement");
-            var collection = db.GetCollection<Student>("student");
-            var results = collection.Find(x => x.Id == IDCombobox.Text + Idtxt.Text).ToList();
-            if (results.Count > 0)
+            var result = DataProvider.Instance.findStudentById(IDCombobox.Text + Idtxt.Text);
+            if (result!=null)
             {
                 MessageBox.Show("Id is not available!");
                 return;
             }
-            collection.InsertOne(newStu);
+            DataProvider.Instance.insertStudent(newStu);
             this.Close();
         }
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -90,7 +87,6 @@ namespace StudentManagement
             {
                 e.Handled = true;
             }
-
             // only allow one decimal point
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
